@@ -1,0 +1,16 @@
+body {
+    font-family: Righteous;
+}
+
+h2, h3 {
+    margin-top: 0;
+}
+
+#game_timer,
+#score {
+    font-size: 2em;
+}
+
+.help {
+    margin: 0;
+}
