@@ -8,21 +8,40 @@
             game_is_over,
             current_score;
 
-        function save_score() {
-            var game_data = window.localStorage.look_back || {},
-                scores = game_data.scores || [];
+        function update_scores() {
+            var game_data = JSON.parse(window.localStorage.look_back || '{"scores": []}'),
+                top_scores_ol = document.getElementById('top_scores'),
+                i = 0,
+                top_score_li, top_score_text;
 
-            scores.push(current_score);
-            window.localStorage.setItem('look_back', game_data);
+            if (game_data.scores.indexOf(current_score) === -1) {
+                game_data.scores.push(current_score);
+                game_data.scores.sort(function (a, b) {
+                    return b - a;
+                });
+            }
+
+            window.localStorage.setItem('look_back', JSON.stringify(game_data));
+
+            while (top_scores_ol.lastChild) {
+                top_scores_ol.removeChild(top_scores_ol.lastChild);
+            }
+
+            for (i; i < 6; i += 1) {
+                if (game_data.scores[i]) {
+                    top_score_text = game_data.scores[i].toString();
+                    top_score_li = document.createElement('li');
+                    top_score_li.appendChild(document.createTextNode(top_score_text));
+                    top_scores_ol.appendChild(top_score_li);
+                }
+            }
         }
 
         function show_game_info() {
             var arena = document.getElementById('arena'),
-                game_info = document.getElementById('game_info'),
-                top_scores = document.getElementById('top_scores');
+                game_info = document.getElementById('game_info');
 
             arena.className = 'hide';
-            top_scores.textContent = window.localStorage.look_back.scores;
             game_info.className = '';
         }
 
@@ -31,7 +50,7 @@
 
             game_timer.textContent = '-.-';
             game_is_over = true;
-            save_score();
+            update_scores();
             show_game_info();
         }
 
@@ -155,8 +174,8 @@
             var start_button = document.getElementById('start_button'),
                 yes_button = document.getElementById('yes_button'),
                 no_button = document.getElementById('no_button');
-            console.log('init_game');
 
+            update_scores();
             start_button.addEventListener('click', start_game);
             yes_button.addEventListener('click', answer_yes);
             no_button.addEventListener('click', answer_no);
