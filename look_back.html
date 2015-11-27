@@ -39,22 +39,38 @@
                     </div>
                     <div class="row">
                         <div class="col s12">
+                            <div id="game_info">
+                                <div class="card-panel teal lighten-2">
+                                    <h4 class="center-align">Top scores</h4>
+                                    <ol id="top_scores">
+                                        <li>0</li>
+                                    </ol>
+                                </div>
+                            </div>
                             <div id="arena" class="hide">
                                 <div class="row">
                                     <div class="col s6">
-                                        <div id="game_timer" class="left-align">-.-</div>
+                                        <div id="game_timer" class="teal lighten-1 center-align">-.-</div>
                                     </div>
                                     <div class="col s6">
-                                        <div id="score" class="badge right-align">0</div>
+                                        <div id="score" class="teal lighten-1 center-align">0</div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col center-align">
-                                        <i id="current_symbol"
-                                            class="card-panel teal lighten-2 large material-icons"></i>
+                                    <div class="col s5 center-align">
+                                        <div id="first_symbol"
+                                            class="card-panel teal lighten-2 symbol"></div>
+                                    </div>
+                                    <div class="col s2 center-align">
+                                        <div id="symbols_operator"
+                                            class="card-panel teal lighten-1 operator">=</div>
+                                    </div>
+                                    <div class="col s5 center-align">
+                                        <div id="last_symbol"
+                                            class="card-panel teal lighten-2 symbol"></div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row actions">
                                     <div class="col s6 left-align">
                                         <button type="button" id="no_button" class="btn waves-effect red">No</button>
                                     </div>
@@ -68,7 +84,7 @@
                     <div class="row">
                         <div class="col s12 center-align">
                             <button type="button" id="start_button"
-                                class="btn waves-effect lighten-1 center-align">Start</button>
+                                class="btn waves-effect lighten-1 center-align" autofocus>Start</button>
                             <button type="button" id="stop_button"
                                 class="btn waves-effect lighten-1 center-align hide">Stop</button>
                         </div>
